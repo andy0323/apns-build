@@ -1,0 +1,79 @@
+#!/usr/bin/env node
+
+var shell   = require('shelljs');
+var program = require('commander');
+var version = require("../package.json").version;
+
+program
+  .version(version)
+    .usage(" badge -n badge-cli -f [md] -t [npm] ")
+    .option('-v, --verbose', '打印详细日志')
+  .parse(process.argv);
+
+// 是否输出详细日志
+var _verbose = program.verbose;
+
+// 输入命令行参数
+var args = program.args;
+
+// 如果参数小于2, 说明输入参数有误
+if (args.length < 2) { console.log('输入参数有误, 详情请参考: apns -help '); return;};
+
+// 获取参数
+var cer_path = args[0];
+var key_path = args[1];
+
+// 设置输出路径
+var node_folder_path = shell.pwd() + '/node';
+var cer_pem_output_path = node_folder_path + '/cert.pem';
+var key_pem_output_path = node_folder_path + '/key.pem';
+
+log(cer_path);
+log(key_path);
+log(cer_pem_output_path);
+log(key_pem_output_path);
+
+shell.mkdir(node_folder_path);
+
+// // 运行程序
+require('../index')(cer_path, key_path, cer_pem_output_path, key_pem_output_path);
+
+/**
+ *  打印运行日志
+ */
+function log(str){
+    if(_verbose == true){
+        console.log(str);
+    }
+}
+
+/**
+ *  模块是否已经定义
+ */
+function isDefined(x) { return x !== null && x !== undefined; } 
+
+/**
+ *  数组扩展
+ */
+Array.prototype.contain = function(obj) {
+    return this.indexOf(obj) !== -1;
+}
+
+/**
+ *  判断是否存在 项目文件路径 .xcodeproj
+ */
+function isExist(xcodeproj_path) {
+
+    // 如果路径存在, 并且是字符串
+    if (xcodeproj_path && typeof(xcodeproj_path) == 'string') {
+
+        // 正则匹配
+        var reg = /\.xcodeproj$/g;        
+
+        if(reg.test(xcodeproj_path)) 
+            return true;
+        else 
+            return false;
+    }
+}
+

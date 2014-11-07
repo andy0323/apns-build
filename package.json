@@ -1,0 +1,16 @@
+{
+  "name": "apns-build",
+  "version": "0.0.2",
+  "description": "apns cert builder",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "apns",
+    "cert",
+    "builder"
+  ],
+  "author": "andy jin",
+  "license": "ISC"
+}
