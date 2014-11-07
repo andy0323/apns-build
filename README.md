@@ -1,34 +1,35 @@
-# ipa-build
+# apns-build
 
-ipa-build是针对iOS项目的打包工具，能够一键生成ipa的开发工具。
+apns-build是一款生成iOS推送服务证书的脚本。
 
 ## how to install 
 
 全局安装打包工具，打开你的终端Terminal，调用下面的命令即可。
 
-	npm install -g ipa-build
+	npm install -g apns-build
 
 ## Command
 
-	ipa-build project_path -v -o ipa_output_path
-	
-**参数：** 
+	apns-build cert_path key_p12_path
 
-project_path代表项目路径，只要指向项目主文件夹即可，目前仅能传入一个。
+**参数：** 
+	
+cert_path    代表证书存放的路径  
+key_p12_path 代表密钥存放的路径
 
 **可选项：**
 
 | 可选项 | 参数用途    | 参数例子  | 默认参数                |  
 |-------|------------|---------|------------------------|
 | -v    | 打印日志    | 无需参数  | 无输出                  |
-| -o    | ipa输出路径 | ~/ipa   | 终端当前路径下的build文件夹|
 
 ## Usages
 
-1. 打开终端Terminal
-*  输入`cd`指令进入你的项目文件夹
-*  输入`ipa-build .`生成脚本
-*  输入`open build`获取ipa文件
+*  Apple开发者中心下载推送证书`cert.cer`
+*  进入Keychain导出证书密钥`key.p12`
+*  打开终端Terminal
+*  输入`apns-build cert_path key_path`
+*  输入`open node'获取所需的`cert.pem`与`key.pem` 
 
 ## 版本历史
 

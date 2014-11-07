@@ -9,7 +9,7 @@ Array.prototype.contain = function(obj) { return this.indexOf(obj) !== -1;}
 
 program
   .version(version)
-    .usage(" badge -n badge-cli -f [md] -t [npm] ")
+    .usage(" apns-build cert_pem_path key_pem_path")
     .option('-v, --verbose', '打印详细日志')
   .parse(process.argv);
 
